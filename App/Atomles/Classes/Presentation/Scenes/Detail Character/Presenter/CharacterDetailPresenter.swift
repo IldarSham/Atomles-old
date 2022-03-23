@@ -17,15 +17,13 @@ class CharacterDetailPresenter {
     weak var view: CharacterDetailViewProtocol?
     
     private let charactersService: CharactersServiceProtocol
-    private let imageLoader: ImageLoaderProtocol
     
     private let characterId: String
         
     // MARK: - Initialization
-    init(view: CharacterDetailViewProtocol, charactersService: CharactersServiceProtocol, imageLoader: ImageLoaderProtocol, characterId: String) {
+    init(view: CharacterDetailViewProtocol, charactersService: CharactersServiceProtocol, characterId: String) {
         self.view = view
         self.charactersService = charactersService
-        self.imageLoader = imageLoader
         self.characterId = characterId
     }
     
@@ -40,15 +38,8 @@ class CharacterDetailPresenter {
     
     func configureView(with characterDetail: CharacterDetailResponse) {
         view?.setNavigationTitle(title: characterDetail.name)
-        
+        view?.setCharacterGallery(imagesUrls: characterDetail.galleryImages)
         view?.setCharacterDescription(description: characterDetail.description)
-        view?.reloadData(section: .description)
-
-        imageLoader.loadImageFrom(urlString: characterDetail.imageUrl) { [weak self] image in
-            guard let image = image else { return }
-            self?.view?.setCharacterImage(image: image)
-            self?.view?.reloadData(section: .photo)
-        }
     }
 }
 

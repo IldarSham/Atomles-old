@@ -10,6 +10,6 @@ import Foundation
 struct CharacterDetailResponse: Decodable {
     var id: Int
     var name: String
-    var imageUrl: String
+    var galleryImages: [String]
     var description: String
 }

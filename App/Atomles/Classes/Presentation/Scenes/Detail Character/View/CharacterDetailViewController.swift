@@ -9,13 +9,12 @@ import UIKit
 
 protocol CharacterDetailViewProtocol: AnyObject {
     func setNavigationTitle(title: String)
-    func setCharacterImage(image: UIImage)
+    func setCharacterGallery(imagesUrls: [String])
     func setCharacterDescription(description: String)
-    func reloadData(section: CharacterDetailSection)
 }
 
 enum CharacterDetailSection: Int, CaseIterable {
-    case photo
+    case gallery
     case description
 }
 
@@ -43,7 +42,7 @@ class CharacterDetailViewController: UIViewController {
         return tableView
     }()
     
-    private var characterImage: UIImage?
+    private var characterImagesUrls: [String]?
     private var characterDescription: String?
 }
 
@@ -54,12 +53,14 @@ extension CharacterDetailViewController: CharacterDetailViewProtocol {
         self.navigationItem.title = title
     }
     
-    func setCharacterImage(image: UIImage) {
-        self.characterImage = image
+    func setCharacterGallery(imagesUrls: [String]) {
+        self.characterImagesUrls = imagesUrls
+        self.reloadData(section: .gallery)
     }
     
     func setCharacterDescription(description: String) {
         self.characterDescription = description
+        self.reloadData(section: .description)
     }
     
     func reloadData(section: CharacterDetailSection) {
@@ -80,8 +81,8 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case CharacterDetailSection.photo.rawValue:
-            return "Фото"
+        case CharacterDetailSection.gallery.rawValue:
+            return "Галерея"
         case CharacterDetailSection.description.rawValue:
             return "Описание"
         default:
@@ -91,13 +92,13 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case CharacterDetailSection.photo.rawValue:
-            let cell = CharacterPhotoCell()
-            cell.setImage(image: characterImage)
+        case CharacterDetailSection.gallery.rawValue:
+            let cell = CharacterGalleryCell()
+            cell.configure(with: characterImagesUrls)
             return cell
         case CharacterDetailSection.description.rawValue:
             let cell = CharacterDescriptionCell()
-            cell.setDescriptionText(text: characterDescription)
+            cell.configure(with: characterDescription)
             return cell
         default:
             return UITableViewCell()
@@ -106,8 +107,8 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case CharacterDetailSection.photo.rawValue:
-            return 350.0
+        case CharacterDetailSection.gallery.rawValue:
+            return Dimensions.characterGalleryCellHeight
         case CharacterDetailSection.description.rawValue:
             return UITableView.automaticDimension
         default:
@@ -124,8 +125,8 @@ extension CharacterDetailViewController {
         self.view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            tableView.heightAnchor.constraint(equalTo: view.heightAnchor)
+            tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
         ])
     }
     

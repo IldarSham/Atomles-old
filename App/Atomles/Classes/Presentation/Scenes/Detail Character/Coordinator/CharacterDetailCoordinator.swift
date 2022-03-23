@@ -23,7 +23,6 @@ class CharacterDetailCoordinator: Coordinator {
         let presenter = CharacterDetailPresenter(
             view: viewController,
             charactersService: CharactersService(),
-            imageLoader: ImageLoader(),
             characterId: characterId
         )
         viewController.presenter = presenter

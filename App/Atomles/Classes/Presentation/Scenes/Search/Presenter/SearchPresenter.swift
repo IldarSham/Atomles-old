@@ -39,7 +39,7 @@ class SearchPresenter {
     }
     
     // MARK: - Methods
-    func loadMainCharacters() {
+    private func loadMainCharacters() {
         charactersService.getMainCharacters { [weak self] (characters, error) in
             if let characters = characters {
                 self?.mainCharactersItems = characters

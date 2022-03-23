@@ -28,7 +28,7 @@ class CharacterDescriptionCell: UITableViewCell {
         return label
     }()
     
-    func setDescriptionText(text: String?) {
+    func configure(with text: String?) {
         characterDescriptionLabel.text = text
     }
 }
