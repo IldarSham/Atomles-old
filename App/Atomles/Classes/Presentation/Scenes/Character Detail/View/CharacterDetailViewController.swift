@@ -20,7 +20,7 @@ enum CharacterDetailSection: Int, CaseIterable {
 
 class CharacterDetailViewController: UIViewController {
 
-    // MARK: - Lifecycle
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -33,7 +33,7 @@ class CharacterDetailViewController: UIViewController {
     // MARK: - Properties
     var presenter: CharacterDetailPresenterProtocol?
     
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsSelection = false
         tableView.delegate = self
@@ -80,39 +80,37 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let section = CharacterDetailSection(rawValue: section) else { return nil }
+        
         switch section {
-        case CharacterDetailSection.gallery.rawValue:
-            return "Галерея"
-        case CharacterDetailSection.description.rawValue:
-            return "Описание"
-        default:
-            return nil
+        case .gallery:     return "Галерея"
+        case .description: return "Описание"
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case CharacterDetailSection.gallery.rawValue:
+        guard let section = CharacterDetailSection(rawValue: indexPath.section) else { return UITableViewCell() }
+        
+        switch section {
+        case .gallery:
             let cell = CharacterGalleryCell()
             cell.configure(with: characterImagesUrls)
             return cell
-        case CharacterDetailSection.description.rawValue:
+        case .description:
             let cell = CharacterDescriptionCell()
             cell.configure(with: characterDescription)
             return cell
-        default:
-            return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case CharacterDetailSection.gallery.rawValue:
+        guard let section = CharacterDetailSection(rawValue: indexPath.section) else { return 44.0 }
+        
+        switch section {
+        case .gallery:
             return Dimensions.characterGalleryCellHeight
-        case CharacterDetailSection.description.rawValue:
+        case .description:
             return UITableView.automaticDimension
-        default:
-            return 44.0
         }
     }
 }

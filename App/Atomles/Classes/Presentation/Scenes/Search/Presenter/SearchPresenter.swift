@@ -8,7 +8,6 @@
 import Foundation
 
 protocol SearchPresenterProtocol {
-    var isSearching: Bool { get }
     func viewDidLoad()
     func searchCharacters(name: String)
     func characterForCell(indexPath: IndexPath) -> String?
@@ -19,16 +18,14 @@ protocol SearchPresenterProtocol {
 class SearchPresenter {
     
     // MARK: - Properties
-    weak var view: SearchViewProtocol?
-    
-    private let coordinator: SearchCoordinator
-    
+    weak var view: SearchViewProtocol!
     private let charactersService: CharactersServiceProtocol
+    private let coordinator: SearchCoordinator
     
     private var mainCharactersItems: [CharactersInfoResponse]?
     private var foundCharactersItems: [CharactersInfoResponse]?
     private var characters: [CharactersInfoResponse]? {
-        return isSearching ? foundCharactersItems : mainCharactersItems
+        return view.isSearching ? foundCharactersItems : mainCharactersItems
     }
     
     // MARK: - Initialization
@@ -43,7 +40,7 @@ class SearchPresenter {
         charactersService.getMainCharacters { [weak self] (characters, error) in
             if let characters = characters {
                 self?.mainCharactersItems = characters
-                self?.view?.reloadData()
+                self?.view.reloadData()
             }
         }
     }
@@ -51,10 +48,6 @@ class SearchPresenter {
 
 // MARK: - Presenter Protocol
 extension SearchPresenter: SearchPresenterProtocol {
-    
-    var isSearching: Bool {
-        return view?.isSearching() ?? false
-    }
     
     func viewDidLoad() {
         loadMainCharacters()
@@ -64,7 +57,7 @@ extension SearchPresenter: SearchPresenterProtocol {
         charactersService.searchCharacters(name: name) { [weak self] (characters, error) in
             if let characters = characters {
                 self?.foundCharactersItems = characters
-                self?.view?.reloadData()
+                self?.view.reloadData()
             }
         }
     }

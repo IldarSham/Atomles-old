@@ -5,7 +5,6 @@
 //  Created by Ildar on 12.03.2022.
 //
 
-import Foundation
 import UIKit
 
 class CharacterDescriptionCell: UITableViewCell {
@@ -21,7 +20,7 @@ class CharacterDescriptionCell: UITableViewCell {
     }
     
     // MARK: - Properties
-    let characterDescriptionLabel: UILabel = {
+    private let characterDescriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false

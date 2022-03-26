@@ -3,6 +3,7 @@ const levenshtein = require('fast-levenshtein')
 
 const characters = require('./data/characters.json')
 const characters_detail = require('./data/characters_detail.json')
+const series = require('./data/series.json')
 
 const app = express()
 const port = 3000
@@ -37,6 +38,10 @@ app.get('/characters/detail', (req, res) => {
 
   const character = characters_detail.find(character => character.id == id)
   res.json(character)
+})
+
+app.get('/series', (req, res) => {
+  res.json(series)
 })
 
 app.listen(port, () => {

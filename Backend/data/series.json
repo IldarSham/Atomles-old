@@ -1,0 +1,172 @@
+[
+    {
+        "season": 1,
+        "episode": 1,
+        "preview_image_url": "http://localhost:3000/images/series/season1/1.png",
+        "title": "Здравствуй, папа!",
+        "description": "Серия о том, к чему приводят попытки избежать ответственности перед своей семьей...",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-1-zdravstvuy-papa/"
+    },
+
+    {
+        "season": 1,
+        "episode": 2,
+        "preview_image_url": "http://localhost:3000/images/series/season1/2.png",
+        "title": "Кровавая свадьба",
+        "description": "Неожиданный сюжетный поворот, саспенс и драма от тутовых шелкопряд, занимающихся  модификацией медвежьих генов.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-2-krovavaya-svadba/"
+    },
+
+    {
+        "season": 1,
+        "episode": 3,
+        "preview_image_url": "http://localhost:3000/images/series/season1/3.png",
+        "title": "Лапы",
+        "description": "Куда заведут шальные лапы? Все о превратностях природы и протезирования.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-3-lapy/"
+    },
+
+    {
+        "season": 1,
+        "episode": 4,
+        "preview_image_url": "http://localhost:3000/images/series/season1/4.png",
+        "title": "Инстинкт требует жертв. Часть 1",
+        "description": "Отживающие традиции, причуды атомной эволюции и борьба за доминирование.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-4-instinkt-trebuet-zhertv-chast-1-/"
+    },
+
+    {
+        "season": 1,
+        "episode": 5,
+        "preview_image_url": "http://localhost:3000/images/series/season1/5.png",
+        "title": "Инстинкт требует жертв. Часть 2",
+        "description": "Эпическое окончание истории о противостоянии грубой силы и нежных чувств, инстинктов и интеллекта. Кто победит в борьбе за любовь главной самки Атомного леса?",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-5-instinkt-trebuet-zhertv-chast-2/"
+    },
+
+    {
+        "season": 1,
+        "episode": 6,
+        "preview_image_url": "http://localhost:3000/images/series/season1/6.png",
+        "title": "Бремя самца",
+        "description": "Каково быть многодетным отцом при стервозной жене? О чем мечтает несчастный глава семьи? Последствия необдуманных желаний - в этой серии.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-6-bremya-samtsa/"
+    },
+
+    {
+        "season": 1,
+        "episode": 7,
+        "preview_image_url": "http://localhost:3000/images/series/season1/7.png",
+        "title": "Мой мишель",
+        "description": "Из-за своего алкоголизма Йод попадает в серьезную передрягу. Медведь решает завязать, но неожиданно у Йода появляется странный воображаемый друг, результат абстинентного синдрома...",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-7-moy-mishel/"
+    },
+
+    {
+        "season": 1,
+        "episode": 8,
+        "preview_image_url": "http://localhost:3000/images/series/season1/8.png",
+        "title": "Последняя любовь",
+        "description": "Бабушка Цезия приехала к внуку погостить. Достав Цезия и Хлору окончательно, невыносимая капризная дама решает не быть больше обузой и омолодить свой организм.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-8-poslednyaya-lyubov/"
+    },
+
+    {
+        "season": 1,
+        "episode": 9,
+        "preview_image_url": "http://localhost:3000/images/series/season1/9.png",
+        "title": "Поводы жить",
+        "description": "Хлора привела домой не пойми кого, но Цезий не намерен с этим мириться. Теперь бедная женщина в слезах, а самец ищет научный способ помочь своей любимой.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-9-povody-zhit/"
+    },
+
+    {
+        "season": 1,
+        "episode": 10,
+        "preview_image_url": "http://localhost:3000/images/series/season1/10.png",
+        "title": "Теперь надо жить осторожней",
+        "description": "Стронция кусает паук-гомояд, и его жена в отчаянии. Чтобы найти противоядие, Сера отправляет мужа и Йода к пингвинам. Опасно!",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-1/seriya-10-teper-nado-zhit-ostorozhney/"
+    },
+
+    {
+        "season": 2,
+        "episode": 1,
+        "preview_image_url": "http://localhost:3000/images/series/season2/1.png",
+        "title": "План природы",
+        "description": "Природа ушла из леса, а инстинкты – из его жителей: Бром разговаривает о политике и экономике в окружении 4 голых дам, а Стронций не признает своих детей. Теперь Йод пытается найти гармонию и вернуть инстинкты их обладателям.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-2/seriya-1-plan-prirody/"
+    },
+
+    {
+        "season": 2,
+        "episode": 2,
+        "preview_image_url": "http://localhost:3000/images/series/season2/2.png",
+        "title": "Защита зверей от информации",
+        "description": "Разъяренный заяц пытается понять, откуда в телевизоре столько насилия и кто в этом виноват. В результате жители выгоняют из леса всех роботов и начинают жизнь с чистого листа.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-2/seriya-2-zashchita-zverey-ot-informatsii/"
+    },
+
+    {
+        "season": 2,
+        "episode": 3,
+        "preview_image_url": "http://localhost:3000/images/series/season2/3.png",
+        "title": "Отложенное путешествие",
+        "description": "Проблемы воспитания отцов и детей через призму постапокалиптического общества. Йод пытается вернуть папе воспоминания о самом важном. Но мысли о прошлом  могут стать чересчур материальными, если уделять им слишком много внимания.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-2/seriya-3-otlozhennoe-puteshestvie/"
+    },
+
+    {
+        "season": 2,
+        "episode": 4,
+        "preview_image_url": "http://localhost:3000/images/series/season2/4.png",
+        "title": "Внутренний стас",
+        "description": "Желание петь эмоциональные песни в стиле транс-электро-хардкор и желание общаться с бывшими – это лишь часть последствий, с которыми можно столкнуться, если есть, что попало. Ну а еще в вас может проснуться Стас и осознание вечной любви.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-2/seriya-4-vnutrenniy-stas/"
+    },
+
+    {
+        "season": 2,
+        "episode": 5,
+        "preview_image_url": "http://localhost:3000/images/series/season2/5.png",
+        "title": "Садовник",
+        "description": "Огромный и невероятно брутальный (на первый взгляд) динозавр проглатывает Йода, а затем выпускает наружу посредством дефекации. Напуганный доктор не спит ночами, бредит и старается уладить конфликт. В результате разговор с динозавром выливается в философскую задушевную беседу за чаем и историю жизни единственного выжившего динозавра-садовника. Тем временем мать мухи-психолога начинает сомневаться в его сексуальной ориентации и пытается устроить его личную жизнь.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-2/seriya-5-sadovnik/"
+    },
+
+    {
+        "season": 2,
+        "episode": 6,
+        "preview_image_url": "http://localhost:3000/images/series/season2/6.png",
+        "title": "Юмор, будь ты проклят!",
+        "description": "В Атомном лесу смех может стать смертельным оружием, способным крушить стены и вводить в кому. Помочь тут может только Йод, половина  Карла Маркса и число 620. И помните: чувство юмора есть у всех, просто некоторым нужно помочь его достать.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-2/seriya-6-yumor-bud-ty-proklyat/"
+    },
+
+    {
+        "season": 2,
+        "episode": 7,
+        "preview_image_url": "http://localhost:3000/images/series/season2/7.png",
+        "title": "Бог, дьявол, его брат и их мать",
+        "description": "Развитие и движуха – двигатель прогресса, а без конфликтов не будет ни добра, ни зла. Поэтому иногда напиться и побуянить –  действие созидательное и одобряемое религиями. Главное следить, чтобы это знание на попало в плохие руки и избегать музыкальных фестивалей на 7-уровневых подземных парковках.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-2/seriya-7-bog-dyavol-ego-brat-i-ikh-mat/"
+    },
+
+    {
+        "season": 2,
+        "episode": 8,
+        "preview_image_url": "http://localhost:3000/images/series/season2/8.png",
+        "title": "Астрономы и врачи",
+        "description": "Во всех нас живут маленькие гномики, которые занимаются строительством и ремонтом наших клеток. А ведь они могут затаить на нас зло! Или это вовсе не гномики? Как бы там ни было – врачи рулят! И еще: не стройте кислую мину, когда друзья пытаются запомнить вас напоследок.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-2/seriya-8-atomnyy-les-s2-ep8-astronomy-i-vrachi-/"
+    },
+
+    {
+        "season": 2,
+        "episode": 9,
+        "preview_image_url": "http://localhost:3000/images/series/season2/9.png",
+        "title": "Секрет скуки",
+        "description": "Занудство - дело тонкое! Пошутишь невзначай, ухмыльнешься кому-нибудь,  перебьешь другого зануду, и все - пиши пропало. Скука упорством и долгими тренировками достигается, тут особые секреты знать надо... Ну и без знающих тренеров, конечно, не обойтись.",
+        "link": "https://2x2tv.ru/video/atomnyj-les/sezon-2/seriya-9-sekret-skuki/"
+    }
+]

@@ -20,7 +20,7 @@ class CharacterGalleryCell: UITableViewCell {
     }
     
     // MARK: - Properties
-    lazy var galleryCollectionView: UICollectionView = {
+    private lazy var galleryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = Dimensions.characterGalleryMinimumLineSpacing
         layout.scrollDirection = .horizontal
@@ -34,7 +34,7 @@ class CharacterGalleryCell: UITableViewCell {
         return collectionView
     }()
     
-    var imagesUrls: [String]?
+    private var imagesUrls: [String]?
     
     func configure(with imagesUrls: [String]?) {
         self.imagesUrls = imagesUrls

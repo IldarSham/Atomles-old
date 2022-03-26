@@ -14,10 +14,8 @@ protocol CharacterDetailPresenterProtocol {
 class CharacterDetailPresenter {
     
     // MARK: - Properties
-    weak var view: CharacterDetailViewProtocol?
-    
+    weak var view: CharacterDetailViewProtocol!
     private let charactersService: CharactersServiceProtocol
-    
     private let characterId: String
         
     // MARK: - Initialization
@@ -28,7 +26,7 @@ class CharacterDetailPresenter {
     }
     
     // MARK: - Methods
-    func loadCharacterDetail(id: String) {
+    private func loadCharacterDetail(id: String) {
         charactersService.getCharacterDetail(id: id) { [weak self] (characterDetail, error) in
             if let characterDetail = characterDetail {
                 self?.configureView(with: characterDetail)
@@ -36,10 +34,10 @@ class CharacterDetailPresenter {
         }
     }
     
-    func configureView(with characterDetail: CharacterDetailResponse) {
-        view?.setNavigationTitle(title: characterDetail.name)
-        view?.setCharacterGallery(imagesUrls: characterDetail.galleryImages)
-        view?.setCharacterDescription(description: characterDetail.description)
+    private func configureView(with characterDetail: CharacterDetailResponse) {
+        view.setNavigationTitle(title: characterDetail.name)
+        view.setCharacterGallery(imagesUrls: characterDetail.galleryImages)
+        view.setCharacterDescription(description: characterDetail.description)
     }
 }
 

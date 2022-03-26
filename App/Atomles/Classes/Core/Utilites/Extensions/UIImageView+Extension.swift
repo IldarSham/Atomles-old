@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageCache {
+final class ImageCache {
     
     private static let imageCache = NSCache<NSString, UIImage>()
     

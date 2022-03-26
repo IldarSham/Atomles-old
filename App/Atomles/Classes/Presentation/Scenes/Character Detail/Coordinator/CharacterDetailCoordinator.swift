@@ -12,8 +12,7 @@ class CharacterDetailCoordinator: Coordinator {
     let navigationController: UINavigationController
     let characterId: String
     
-    init(navigationController: UINavigationController,
-         characterId: String) {
+    init(navigationController: UINavigationController, characterId: String) {
         self.navigationController = navigationController
         self.characterId = characterId
     }

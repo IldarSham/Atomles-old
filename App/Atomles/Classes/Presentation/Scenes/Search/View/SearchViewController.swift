@@ -8,13 +8,13 @@
 import UIKit
 
 protocol SearchViewProtocol: AnyObject {
-    func isSearching() -> Bool
+    var isSearching: Bool { get }
     func reloadData()
 }
 
 class SearchViewController: UIViewController {
 
-    // MARK: - Lifecycle
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -27,7 +27,10 @@ class SearchViewController: UIViewController {
     // MARK: - Properties
     var presenter: SearchPresenterProtocol?
     
-    lazy var searchController: UISearchController = {
+    private var typeDelayTimer: Timer?
+    private let typingDelay = 0.2
+    
+    private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -35,7 +38,7 @@ class SearchViewController: UIViewController {
         return searchController
     }()
 
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "characterCell")
         tableView.delegate = self
@@ -43,15 +46,12 @@ class SearchViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
-    private var typeDelayTimer: Timer?
-    private let typingDelay = 0.2
 }
 
 // MARK: - View Protocol
 extension SearchViewController: SearchViewProtocol {
     
-    func isSearching() -> Bool {
+    var isSearching: Bool {
         var searchBarIsEmpty: Bool {
             guard let text = searchController.searchBar.text else { return false }
             return text.isEmpty
@@ -105,7 +105,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let isSearching = presenter?.isSearching, !isSearching else { return nil }
+        guard !isSearching else { return nil }
         
         let header = SearchHeaderView()
         header.titleLabel.text = "Основные"
@@ -114,7 +114,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let isSearching = presenter?.isSearching, !isSearching else { return 0.0 }
+        guard !isSearching else { return 0.0 }
         return 44.0
     }
 }

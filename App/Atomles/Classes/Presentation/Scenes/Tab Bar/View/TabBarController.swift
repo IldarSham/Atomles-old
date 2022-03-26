@@ -14,6 +14,7 @@ class TabBarController: UITabBarController {
         
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
+            self.tabBar.tintColor = Colors.tabBarTintColor
             self.tabBar.standardAppearance = appearance
             self.tabBar.scrollEdgeAppearance = appearance
         }
