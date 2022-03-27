@@ -25,7 +25,7 @@ class EpisodeCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        label.textColor = Colors.seriesFilterButtonColor
+        label.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -71,9 +71,9 @@ extension EpisodeCell {
         self.contentView.addSubview(previewImageView)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20)
+            titleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
+            titleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -15),
+            titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
         ])
         
         NSLayoutConstraint.activate([
@@ -92,7 +92,7 @@ extension EpisodeCell {
             previewImageView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             previewImageView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             previewImageView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
-            previewImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            previewImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             previewImageView.heightAnchor.constraint(equalToConstant: 250)
         ])
     }

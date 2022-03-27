@@ -1,5 +1,5 @@
 //
-//  SeriesPresenter.swift
+//  SeriesListPresenter.swift
 //  Atomles
 //
 //  Created by Ildar on 25.03.2022.
@@ -7,25 +7,25 @@
 
 import Foundation
 
-protocol SeriesPresenterProtocol {
+protocol SeriesListPresenterProtocol {
     func viewDidLoad()
     func seriesForRowAt(indexPath: IndexPath) -> SeriesResponse?
-    func numberOfRowsInSection() -> Int?
+    func numberOfSections() -> Int?
     func retreiveLink(indexPath: IndexPath) -> String?
     func setSeriesFilter(filter: SeriesFilter)
 }
 
-class SeriesPresenter {
+class SeriesListPresenter {
     
     // MARK: - Properties
-    weak var view: SeriesViewProtocol!
+    weak var view: SeriesListViewProtocol!
     private let seriesService: SeriesServiceProtocol
     
     private var allSeries: [SeriesResponse]?
     private var series: [SeriesResponse]?
     
     // MARK: - Initialization
-    init(view: SeriesViewProtocol, seriesService: SeriesServiceProtocol) {
+    init(view: SeriesListViewProtocol, seriesService: SeriesServiceProtocol) {
         self.view = view
         self.seriesService = seriesService
     }
@@ -43,26 +43,26 @@ class SeriesPresenter {
 }
 
 // MARK: - Presenter Protocol
-extension SeriesPresenter: SeriesPresenterProtocol {
+extension SeriesListPresenter: SeriesListPresenterProtocol {
     
     func viewDidLoad() {
         loadAllSeries()
     }
     
     func seriesForRowAt(indexPath: IndexPath) -> SeriesResponse? {
-        guard let series = series?[indexPath.row] else {
+        guard let series = series?[indexPath.section] else {
             return nil
         }
 
         return series
     }
     
-    func numberOfRowsInSection() -> Int? {
+    func numberOfSections() -> Int? {
         return series?.count
     }
     
     func retreiveLink(indexPath: IndexPath) -> String? {
-        guard let series = series?[indexPath.row] else {
+        guard let series = series?[indexPath.section] else {
             return nil
         }
 

@@ -24,7 +24,7 @@ class SeriesFilterCell: UICollectionViewCell {
     // MARK: - Properties
     private let seriesFilterButton: UIView = {
         let button = UIView()
-        button.layer.borderColor = Colors.seriesFilterButtonColor.cgColor
+        button.layer.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         button.layer.borderWidth = 1.5
         button.layer.cornerRadius = 14
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ class SeriesFilterCell: UICollectionViewCell {
     private let seriesFilterTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: Dimensions.seriesFilterFontSize)
-        label.textColor = Colors.seriesFilterTitleColor
+        label.textColor = #colorLiteral(red: 0.1699999571, green: 0.1699999571, blue: 0.1699999571, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -44,13 +44,13 @@ class SeriesFilterCell: UICollectionViewCell {
     }
     
     func select() {
-        seriesFilterButton.backgroundColor = Colors.seriesFilterButtonColor
+        seriesFilterButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         seriesFilterTitleLabel.textColor = .white
     }
     
     func deselect() {
         seriesFilterButton.backgroundColor = .none
-        seriesFilterTitleLabel.textColor = Colors.seriesFilterTitleColor
+        seriesFilterTitleLabel.textColor = #colorLiteral(red: 0.1699999571, green: 0.1699999571, blue: 0.1699999571, alpha: 1)
     }
 }
 

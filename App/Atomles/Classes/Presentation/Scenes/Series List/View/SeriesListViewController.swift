@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SeriesViewProtocol: AnyObject {
+protocol SeriesListViewProtocol: AnyObject {
     func reloadData()
 }
 
@@ -30,7 +30,7 @@ class SeriesViewController: UIViewController {
     }
     
     // MARK: - Properties
-    var presenter: SeriesPresenterProtocol?
+    var presenter: SeriesListPresenterProtocol?
         
     private var seriesFilter: SeriesFilter = .all
     
@@ -49,11 +49,15 @@ class SeriesViewController: UIViewController {
     }()
     
     private lazy var seriesListTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.reuseId)
+        tableView.tableHeaderView = .init(frame: .init(x: 0, y: 0, width: 0, height: 10))
+        tableView.tableFooterView = .init(frame: .init(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
+        tableView.sectionHeaderHeight = 0
+        tableView.sectionFooterHeight = 10
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
@@ -65,7 +69,7 @@ class SeriesViewController: UIViewController {
 }
 
 // MARK: - View Protocol
-extension SeriesViewController: SeriesViewProtocol {
+extension SeriesViewController: SeriesListViewProtocol {
     
     func reloadData() {
         seriesListTableView.reloadData()
@@ -85,9 +89,12 @@ extension SeriesViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let filter = SeriesFilter(rawValue: indexPath.item) else { return cell }
         
         switch filter {
-        case .all:     cell.configure(with: "Все серии")
-        case .season1: cell.configure(with: "1 сезон")
-        case .season2: cell.configure(with: "2 сезон")
+        case .all:
+            cell.configure(with: "Все серии")
+        case .season1:
+            cell.configure(with: "1 сезон")
+        case .season2:
+            cell.configure(with: "2 сезон")
         }
         
         if filter == seriesFilter {
@@ -118,7 +125,11 @@ extension SeriesViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension SeriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.numberOfRowsInSection() ?? 0
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter?.numberOfSections() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

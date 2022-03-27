@@ -21,7 +21,7 @@ class TabBarCoordinator: Coordinator {
         let seriesNavigationController = UINavigationController()
         seriesNavigationController.tabBarItem = UITabBarItem(
             title: "Серии", image: UIImage(systemName: "play.circle"), tag: 1)
-        let seriesCoordinator = SeriesCoordinator(navigationController: seriesNavigationController)
+        let seriesListCoordinator = SeriesListCoordinator(navigationController: seriesNavigationController)
         
         let searchNavigationController = UINavigationController()
         searchNavigationController.tabBarItem = UITabBarItem(
@@ -32,7 +32,7 @@ class TabBarCoordinator: Coordinator {
         
         navigationController.viewControllers = [tabBarController]
         
-        coordinate(to: seriesCoordinator)
+        coordinate(to: seriesListCoordinator)
         coordinate(to: searchCoordinator)
     }
 }
