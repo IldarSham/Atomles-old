@@ -17,7 +17,5 @@ struct Dimensions {
     static let characterGalleryInset = 20.0
     static let characterGalleryItemWidth = screenWidth - characterGalleryInset * 2
     
-    static let seriesFilterFontSize = 11.0
-    static let seriesFilterInset = 20.0
-    static let seriesFilterItemWidth = 90.0
+    static let seriesFiltersHeight = 28.0
 }

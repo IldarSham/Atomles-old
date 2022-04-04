@@ -18,17 +18,17 @@ class TabBarCoordinator: Coordinator {
     func start() {
         let tabBarController = TabBarController()
         
-        let seriesNavigationController = UINavigationController()
-        seriesNavigationController.tabBarItem = UITabBarItem(
+        let seriesListNavigationController = UINavigationController()
+        seriesListNavigationController.tabBarItem = UITabBarItem(
             title: "Серии", image: UIImage(systemName: "play.circle"), tag: 1)
-        let seriesListCoordinator = SeriesListCoordinator(navigationController: seriesNavigationController)
+        let seriesListCoordinator = SeriesListCoordinator(navigationController: seriesListNavigationController)
         
         let searchNavigationController = UINavigationController()
         searchNavigationController.tabBarItem = UITabBarItem(
             title: "Поиск", image: UIImage(systemName: "magnifyingglass"), tag: 2)
         let searchCoordinator = SearchCoordinator(navigationController: searchNavigationController)
         
-        tabBarController.viewControllers = [seriesNavigationController, searchNavigationController]
+        tabBarController.viewControllers = [seriesListNavigationController, searchNavigationController]
         
         navigationController.viewControllers = [tabBarController]
         

@@ -9,7 +9,7 @@ import UIKit
 
 class EpisodeCell: UITableViewCell {
 
-    static let reuseId = "episodeCell"
+    static let reuseIdentifier = "episodeCell"
     
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

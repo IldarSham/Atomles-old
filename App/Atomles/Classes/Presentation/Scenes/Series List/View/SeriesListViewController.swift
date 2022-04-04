@@ -11,12 +11,6 @@ protocol SeriesListViewProtocol: AnyObject {
     func reloadData()
 }
 
-enum SeriesFilter: Int, CaseIterable {
-    case all
-    case season1
-    case season2
-}
-
 class SeriesViewController: UIViewController {
 
     // MARK: - Life cycle
@@ -31,26 +25,17 @@ class SeriesViewController: UIViewController {
     
     // MARK: - Properties
     var presenter: SeriesListPresenterProtocol?
-        
-    private var seriesFilter: SeriesFilter = .all
     
-    private lazy var seriesFilterCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(SeriesFilterCell.self, forCellWithReuseIdentifier: SeriesFilterCell.reuseId)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: Dimensions.seriesFilterInset, bottom: 0, right: Dimensions.seriesFilterInset)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.alwaysBounceHorizontal = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        return collectionView
+    private lazy var seriesFiltersView: FiltersView = {
+        let view = FiltersView(titles: ["Все серии", "1 сезон", "2 сезон"])
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private lazy var seriesListTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.reuseId)
+        tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.reuseIdentifier)
         tableView.tableHeaderView = .init(frame: .init(x: 0, y: 0, width: 0, height: 10))
         tableView.tableFooterView = .init(frame: .init(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
         tableView.sectionHeaderHeight = 0
@@ -60,12 +45,6 @@ class SeriesViewController: UIViewController {
         tableView.dataSource = self
         return tableView
     }()
-    
-    // MARK: - Methods
-    func setSeriesFilter(filter: SeriesFilter) {
-        seriesFilter = filter
-        presenter?.setSeriesFilter(filter: filter)
-    }
 }
 
 // MARK: - View Protocol
@@ -76,48 +55,12 @@ extension SeriesViewController: SeriesListViewProtocol {
     }
 }
 
-// MARK: - UICollectionView Delegate & Data Source
-extension SeriesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+// MARK: - FiltersView Delegate
+extension SeriesViewController: FiltersViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return SeriesFilter.allCases.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeriesFilterCell.reuseId, for: indexPath) as! SeriesFilterCell
-        
-        guard let filter = SeriesFilter(rawValue: indexPath.item) else { return cell }
-        
-        switch filter {
-        case .all:
-            cell.configure(with: "Все серии")
-        case .season1:
-            cell.configure(with: "1 сезон")
-        case .season2:
-            cell.configure(with: "2 сезон")
-        }
-        
-        if filter == seriesFilter {
-            cell.select()
-        }
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: Dimensions.seriesFilterItemWidth, height: seriesFilterCollectionView.frame.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let filter = SeriesFilter(rawValue: indexPath.item), filter != seriesFilter else { return }
-        
-        let selectedCell = collectionView.cellForItem(at: IndexPath(item: seriesFilter.rawValue, section: indexPath.section)) as! SeriesFilterCell
-        selectedCell.deselect()
-        
-        let deselectedCell = collectionView.cellForItem(at: indexPath) as! SeriesFilterCell
-        deselectedCell.select()
-        
-        setSeriesFilter(filter: filter)
+    func didSelectFilter(index: Int) {
+        guard let seriesFilter = SeriesFilter(rawValue: index) else { return }
+        presenter?.didSelectSeriesFilter(filter: seriesFilter)
     }
 }
 
@@ -133,7 +76,7 @@ extension SeriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.reuseId, for: indexPath) as! EpisodeCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.reuseIdentifier, for: indexPath) as! EpisodeCell
         
         guard let series = presenter?.seriesForRowAt(indexPath: indexPath) else { return cell }
         cell.configure(with: series)
@@ -174,20 +117,20 @@ extension SeriesViewController {
     private func setupUI() {
         self.view.backgroundColor = .systemBackground
         
-        self.view.addSubview(seriesFilterCollectionView)
+        self.view.addSubview(seriesFiltersView)
         self.view.addSubview(seriesListTableView)
         
         NSLayoutConstraint.activate([
-            seriesFilterCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            seriesFilterCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            seriesFilterCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            seriesFilterCollectionView.heightAnchor.constraint(equalToConstant: 28)
+            seriesFiltersView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            seriesFiltersView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            seriesFiltersView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            seriesFiltersView.heightAnchor.constraint(equalToConstant: Dimensions.seriesFiltersHeight)
         ])
-        
+
         NSLayoutConstraint.activate([
             seriesListTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             seriesListTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            seriesListTableView.topAnchor.constraint(equalTo: seriesFilterCollectionView.bottomAnchor, constant: 10),
+            seriesListTableView.topAnchor.constraint(equalTo: seriesFiltersView.bottomAnchor, constant: 10),
             seriesListTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ])
     }

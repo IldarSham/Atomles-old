@@ -25,7 +25,7 @@ class CharacterGalleryCell: UITableViewCell {
         layout.minimumLineSpacing = Dimensions.characterGalleryMinimumLineSpacing
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(CharacterPhotoCell.self, forCellWithReuseIdentifier: CharacterPhotoCell.reuseId)
+        collectionView.register(CharacterPhotoCell.self, forCellWithReuseIdentifier: CharacterPhotoCell.reuseIdentifier)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: Dimensions.characterGalleryInset, bottom: 0, right: Dimensions.characterGalleryInset)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +49,7 @@ extension CharacterGalleryCell: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterPhotoCell.reuseId, for: indexPath) as! CharacterPhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterPhotoCell.reuseIdentifier, for: indexPath) as! CharacterPhotoCell
  
         guard let url = imagesUrls?[indexPath.row] else { return UICollectionViewCell()}
         cell.configure(with: url)

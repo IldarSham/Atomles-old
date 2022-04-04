@@ -12,7 +12,7 @@ protocol SeriesListPresenterProtocol {
     func seriesForRowAt(indexPath: IndexPath) -> SeriesResponse?
     func numberOfSections() -> Int?
     func retreiveLink(indexPath: IndexPath) -> String?
-    func setSeriesFilter(filter: SeriesFilter)
+    func didSelectSeriesFilter(filter: SeriesFilter)
 }
 
 class SeriesListPresenter {
@@ -69,13 +69,16 @@ extension SeriesListPresenter: SeriesListPresenterProtocol {
         return series.link
     }
     
-    func setSeriesFilter(filter: SeriesFilter) {
+    func didSelectSeriesFilter(filter: SeriesFilter) {
         guard let allSeries = allSeries else { return }
         
         switch filter {
-        case .all:     series = allSeries
-        case .season1: series = allSeries.filter { $0.season == 1 }
-        case .season2: series = allSeries.filter { $0.season == 2 }
+        case .all:
+            series = allSeries
+        case .season1:
+            series = allSeries.filter { $0.season == 1 }
+        case .season2:
+            series = allSeries.filter { $0.season == 2 }
         }
         
         view.reloadData()

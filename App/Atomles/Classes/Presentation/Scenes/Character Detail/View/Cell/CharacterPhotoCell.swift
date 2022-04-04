@@ -9,7 +9,7 @@ import UIKit
 
 class CharacterPhotoCell: UICollectionViewCell {
     
-    static let reuseId = "characterPhotoCell"
+    static let reuseIdentifier = "characterPhotoCell"
 
     // MARK: - Initialization
     override init(frame: CGRect) {
